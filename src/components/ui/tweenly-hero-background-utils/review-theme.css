@@ -1,0 +1,10 @@
+/* review-theme.css */
+:root {
+  --background: #ffffff;
+  --foreground: #090d16;
+}
+
+.dark {
+  --background: #090a0f;
+  --foreground: #f8fafc;
+}
