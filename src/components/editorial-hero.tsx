@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import WireframeForms from "@/components/ui/wireframe-forms";
 import { HeroBackground } from "@/components/ui/tweenly-hero-background";
 
@@ -58,7 +59,7 @@ export function EditorialHero({
         ───────────────────────────────────────────────────────────── */}
         <header className="relative z-20 w-full px-4 sm:px-6 md:px-8 lg:px-10 pt-6 sm:pt-8 lg:pt-9 pb-2 flex items-start justify-between gap-6">
         {/* Top-Left: Nav Links */}
-        <nav className="flex items-center justify-start gap-4 sm:gap-7 lg:gap-9 text-xs font-bold tracking-[0.22em] text-[#090D16]/80 font-mono overflow-x-auto no-scrollbar pt-1">
+        <nav className="flex items-center justify-start gap-4 sm:gap-7 lg:gap-9 text-xs font-bold tracking-[0.22em] text-[#090D16]/80 font-mono overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pt-1">
           <Link
             href="#hero"
             className="text-[#090D16] hover:text-[#0284C7] transition-colors whitespace-nowrap"
@@ -117,7 +118,7 @@ export function EditorialHero({
       ───────────────────────────────────────────────────────────── */}
       <div className="hidden lg:flex absolute left-4 sm:left-6 md:left-8 lg:px-2 top-1/2 -translate-y-1/2 z-30 flex-col items-start gap-7 font-mono text-xs font-bold tracking-[0.25em] text-[#090D16]/75 text-left">
         <a
-          href="https://github.com"
+          href="https://github.com/nael0407"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#0284C7] transition-colors py-1 text-left"
@@ -126,7 +127,7 @@ export function EditorialHero({
           GH
         </a>
         <a
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/in/natanael-simanjuntak"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#0284C7] transition-colors py-1 text-left"
@@ -144,57 +145,74 @@ export function EditorialHero({
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          3. HERO MAIN BODY (Summary right above Monumental Name)
+          3. HERO MAIN BODY (Portrait on Left, Summary & Name on Right)
       ───────────────────────────────────────────────────────────── */}
-      <div className="relative z-10 flex-1 w-full px-4 sm:px-6 md:px-8 lg:px-10 flex flex-col justify-end items-start lg:items-end text-left lg:text-right pb-8 sm:pb-12 lg:pb-14">
-        {/* Mobile Social Connections (hanya muncul di layar mobile kecil) */}
-        <div className="flex lg:hidden flex-row items-center justify-start gap-6 font-mono text-xs font-bold tracking-[0.25em] text-[#090D16]/75 text-left py-4 mb-2">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#0284C7] transition-colors"
-          >
-            GH
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#0284C7] transition-colors"
-          >
-            IN
-          </a>
-          <a
-            href="#contact"
-            className="hover:text-[#0284C7] transition-colors"
-          >
-            CV
-          </a>
+      <div className="relative z-10 flex-1 w-full px-4 sm:px-6 md:px-8 lg:pl-20 xl:pl-24 lg:pr-8 xl:pr-12 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-8 pb-8 sm:pb-12 lg:pb-10">
+        {/* Left Column: Editorial Portrait Card (Magnified Dominant Scale) */}
+        <div className="relative shrink-0 mb-6 lg:mb-0 lg:translate-x-2 xl:translate-x-4 lg:-translate-y-4 xl:-translate-y-8 group">
+          <div className="relative w-72 h-[360px] sm:w-80 sm:h-[420px] md:w-96 md:h-[490px] lg:w-[420px] lg:h-[530px] xl:w-[470px] xl:h-[590px] 2xl:w-[560px] 2xl:h-[680px] rounded-2xl sm:rounded-3xl lg:rounded-[36px] overflow-hidden border border-[#BAE6FD] bg-[#090A0F] shadow-2xl transition-all duration-300 group-hover:border-[#0284C7] group-hover:shadow-[0_28px_70px_rgba(2,132,199,0.25)]">
+            <Image
+              src="/images/natanael-hero.jpg"
+              alt="Natanael Sebastian Simanjuntak"
+              fill
+              sizes="(max-width: 768px) 360px, (max-width: 1200px) 470px, 560px"
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              priority
+            />
+          </div>
         </div>
 
-        {/* Summary Profile Block (Placed Directly Above the Name) */}
-        <div className="max-w-md lg:max-w-xl mb-4 lg:mb-6">
-          <p className="font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#090D16]/80 leading-relaxed uppercase">
-            {roleDescription}
-          </p>
-        </div>
+        {/* Right Column: Summary + Monumental Name */}
+        <div className="w-full lg:w-auto flex-1 flex flex-col items-start lg:items-end text-left lg:text-right min-w-0">
+          {/* Mobile Social Connections (hanya muncul di layar mobile kecil) */}
+          <div className="flex lg:hidden flex-row items-center justify-start gap-6 font-mono text-xs font-bold tracking-[0.25em] text-[#090D16]/75 text-left py-2 mb-2">
+            <a
+              href="https://github.com/nael0407"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#0284C7] transition-colors"
+            >
+              GH
+            </a>
+            <a
+              href="https://www.linkedin.com/in/natanael-simanjuntak"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#0284C7] transition-colors"
+            >
+              IN
+            </a>
+            <a
+              href="#contact"
+              className="hover:text-[#0284C7] transition-colors"
+            >
+              CV
+            </a>
+          </div>
 
-        {/* Monumental Display Name */}
-        <div className="w-full flex flex-col items-start lg:items-end space-y-0.5">
-          <div className="flex items-start gap-2 sm:gap-3 leading-none">
-            <span className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-[#0284C7] select-none mt-1 sm:mt-2">
-              ©
-            </span>
-            <span className="font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.5rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none">
-              {firstName}
-            </span>
+          {/* Summary Profile Block (Placed Directly Above the Name) */}
+          <div className="max-w-md lg:max-w-lg xl:max-w-xl mb-4 lg:mb-5">
+            <p className="font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#090D16]/80 leading-relaxed uppercase">
+              {roleDescription}
+            </p>
           </div>
-          <div className="font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.5rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none">
-            {middleName}
-          </div>
-          <div className="font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.5rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none">
-            {lastName}
+
+          {/* Monumental Display Name */}
+          <div className="w-full flex flex-col items-start lg:items-end space-y-0.5">
+            <div className="flex items-start gap-2 sm:gap-3 leading-none">
+              <span className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light text-[#0284C7] select-none mt-1 sm:mt-2">
+                ©
+              </span>
+              <span className="font-black text-4xl sm:text-6xl md:text-6xl lg:text-[3.8rem] xl:text-[4.7rem] 2xl:text-[6.2rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
+                {firstName}
+              </span>
+            </div>
+            <div className="font-black text-4xl sm:text-6xl md:text-6xl lg:text-[3.8rem] xl:text-[4.7rem] 2xl:text-[6.2rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
+              {middleName}
+            </div>
+            <div className="font-black text-4xl sm:text-6xl md:text-6xl lg:text-[3.8rem] xl:text-[4.7rem] 2xl:text-[6.2rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
+              {lastName}
+            </div>
           </div>
         </div>
       </div>

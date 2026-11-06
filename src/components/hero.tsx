@@ -57,7 +57,7 @@ export function Hero() {
           </Link>
           <div className="flex items-center gap-2 ml-auto">
             <a
-              href="https://github.com"
+              href="https://github.com/nael0407"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full border border-border bg-card/40 text-muted-foreground hover:text-foreground hover:border-accent/40 transition-colors"
@@ -66,7 +66,7 @@ export function Hero() {
               <GithubIcon className="w-4 h-4" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/natanael-simanjuntak"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full border border-border bg-card/40 text-muted-foreground hover:text-foreground hover:border-accent/40 transition-colors"

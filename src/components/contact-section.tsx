@@ -7,7 +7,7 @@ import { HeroBackground } from "@/components/ui/tweenly-hero-background";
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
-  const email = "alex.dev@example.com";
+  const email = "natansimanjuntak17@gmail.com";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
@@ -89,7 +89,7 @@ export function ContactSection() {
         {/* Bottom Bar: Socials */}
         <div className="flex items-center justify-center gap-8 pt-8 border-t border-[#BAE6FD] text-xs font-mono text-[#090D16]/80">
           <a
-            href="https://github.com"
+            href="https://github.com/nael0407"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-[#0284C7] transition-colors"
@@ -98,7 +98,7 @@ export function ContactSection() {
             <span>GitHub</span>
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/natanael-simanjuntak"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-[#0284C7] transition-colors"
