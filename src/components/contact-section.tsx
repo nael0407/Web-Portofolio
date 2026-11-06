@@ -30,13 +30,13 @@ export function ContactSection() {
       />
 
       <HeroBackground
-        variant="waves"
-        color="#0284C7"
-        accent="#090D16"
-        opacity={0.16}
-        density={0.8}
+        variant="dots"
+        color="#090D16"
+        accent="#0284C7"
+        opacity={0.14}
+        density={0.85}
         size={1.5}
-        mask="fade-edges"
+        mask="radial"
         className="w-full h-full bg-transparent"
       >
         <div className="max-w-5xl mx-auto px-6 relative z-10">

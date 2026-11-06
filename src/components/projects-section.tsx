@@ -409,11 +409,11 @@ export function ProjectsSection() {
       />
 
       <HeroBackground
-        variant="grid"
-        color="#334155"
+        variant="dots"
+        color="#64748B"
         accent="#38BDF8"
         opacity={0.22}
-        density={0.8}
+        density={0.85}
         size={1.5}
         mask="radial"
         className="w-full h-full bg-transparent"

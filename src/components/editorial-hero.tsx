@@ -16,7 +16,7 @@ export function EditorialHero({
   firstName = "NATANAEL",
   middleName = "SEBASTIAN",
   lastName = "SIMANJUNTAK",
-  roleDescription = "I'M A FULL-STACK & FRONTEND ENGINEER FOCUSED ON BUILDING REFINED, PURPOSEFUL, AND VISUALLY ENGAGING DIGITAL EXPERIENCES.",
+  roleDescription = "I'M WORKING ACROSS AI, NETWORK SECURITY AND FORENSICS, AND CLOUD-NATIVE INFRASTRUCTURE. I ALSO WORK ON DEEP LEARNING COMPUTER VISION FOR A HUMANOID ROBOT.",
 }: EditorialHeroProps) {
   return (
     /* ─────────────────────────────────────────────────────────────

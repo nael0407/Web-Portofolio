@@ -121,12 +121,11 @@ export function ExperienceSection() {
       />
 
       <HeroBackground
-        variant="flow"
-        color="#0284C7"
-        accent="#090D16"
-        opacity={0.16}
-        speed={0.8}
-        density={0.75}
+        variant="dots"
+        color="#090D16"
+        accent="#0284C7"
+        opacity={0.14}
+        density={0.85}
         size={1.5}
         mask="radial"
         className="w-full h-full bg-transparent"

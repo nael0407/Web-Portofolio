@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Code2, ShieldCheck, Network, Wrench } from "lucide-react";
+import { Code2, ShieldCheck, Network } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { Card } from "@/components/ui/card-hover-effect";
 import { HeroBackground } from "@/components/ui/tweenly-hero-background";
-import { cn } from "@/lib/utils";
 
 interface SkillItem {
   name: string;
@@ -15,7 +14,6 @@ interface SkillItem {
 interface SkillCategory {
   title: string;
   icon: React.ElementType;
-  wide?: boolean;
   skills: SkillItem[];
 }
 
@@ -59,16 +57,6 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "Argo CD", tag: "GitOps" },
     ],
   },
-  {
-    title: "Tools",
-    icon: Wrench,
-    wide: true,
-    skills: [
-      { name: "Git", tag: "Version control" },
-      { name: "React", tag: "UI library" },
-      { name: "Tailwind CSS", tag: "Styling" },
-    ],
-  },
 ];
 
 export function SkillsSection() {
@@ -94,7 +82,7 @@ export function SkillsSection() {
       />
 
       <HeroBackground
-        variant="particles"
+        variant="dots"
         color="#64748B"
         accent="#38BDF8"
         opacity={0.22}
@@ -119,19 +107,15 @@ export function SkillsSection() {
           </p>
         </div>
 
-        {/* Aceternity Card Hover Effect Grid */}
+        {/* Aceternity Card Hover Effect Grid (3 Columns) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3">
           {SKILL_CATEGORIES.map((cat, idx) => {
             const Icon = cat.icon;
-            const isWide = cat.wide;
 
             return (
               <div
                 key={cat.title}
-                className={cn(
-                  "relative group block p-2 h-full w-full",
-                  isWide ? "md:col-span-3" : ""
-                )}
+                className="relative group block p-2 h-full w-full"
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -156,13 +140,8 @@ export function SkillsSection() {
 
                 {/* Card Body */}
                 <Card className="bg-[#11131B] border-[#1E2333] group-hover:border-[#FFFFFF]/40 transition-colors duration-200">
-                  {/* Category Header with aligned height */}
-                  <div
-                    className={cn(
-                      "flex items-center gap-3.5 mb-4 pb-4 border-b border-[#1E2333]/80",
-                      !isWide ? "min-h-[58px]" : ""
-                    )}
-                  >
+                  {/* Category Header */}
+                  <div className="flex items-center gap-3.5 mb-4 pb-4 border-b border-[#1E2333]/80 min-h-[58px]">
                     <div className="w-11 h-11 rounded-xl bg-[#161926] border border-[#262A3A] flex items-center justify-center text-white shrink-0 shadow-sm">
                       <Icon className="w-5 h-5" />
                     </div>
@@ -172,39 +151,21 @@ export function SkillsSection() {
                   </div>
 
                   {/* Skills List */}
-                  {isWide ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-1">
-                      {cat.skills.map((skill) => (
-                        <div
-                          key={skill.name}
-                          className="flex items-baseline justify-between gap-3 py-2 border-t border-[#1E2333]/80 font-mono text-xs sm:text-sm"
-                        >
-                          <span className="text-white font-semibold">
-                            {skill.name}
-                          </span>
-                          <span className="text-[11px] uppercase tracking-wider text-[#94A3B8] font-medium text-right">
-                            {skill.tag}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="divide-y divide-[#1E2333]/80">
-                      {cat.skills.map((skill) => (
-                        <div
-                          key={skill.name}
-                          className="flex items-baseline justify-between gap-3 py-2 font-mono text-xs sm:text-sm first:pt-0 last:pb-0"
-                        >
-                          <span className="text-white font-semibold">
-                            {skill.name}
-                          </span>
-                          <span className="text-[11px] uppercase tracking-wider text-[#94A3B8] font-medium text-right">
-                            {skill.tag}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <div className="divide-y divide-[#1E2333]/80">
+                    {cat.skills.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="flex items-baseline justify-between gap-3 py-2 font-mono text-xs sm:text-sm first:pt-0 last:pb-0"
+                      >
+                        <span className="text-white font-semibold">
+                          {skill.name}
+                        </span>
+                        <span className="text-[11px] uppercase tracking-wider text-[#94A3B8] font-medium text-right">
+                          {skill.tag}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </Card>
               </div>
             );
