@@ -443,6 +443,7 @@ export function ProjectsSection() {
               showNavigation={true}
               showPagination={true}
               expandable={true}
+              speed={0.34}
               cardWidth="clamp(240px, 32vw, 380px)"
               cardClassName="border border-[#1E2333] shadow-2xl hover:border-[#FFFFFF]/60 transition-all duration-300"
               className="text-[#F8FAFC]"

@@ -50,6 +50,8 @@ export interface CoverflowCarouselProps {
   showNavigation?: boolean;
   /** Whether pressing a card expands into a detailed modal */
   expandable?: boolean;
+  /** Sliding animation speed factor per frame. Higher = faster slide. Default: 0.32 */
+  speed?: number;
   onCardClick?: (slide: CoverflowSlide, index: number) => void;
   /** Names the carousel for assistive tech. */
   label?: string;
@@ -92,6 +94,7 @@ export function CoverflowCarousel({
   showPagination = true,
   showNavigation = true,
   expandable = true,
+  speed = 0.32,
   onCardClick,
   label = "Production systems carousel",
   className,
@@ -192,19 +195,19 @@ export function CoverflowCarousel({
 
       const step = () => {
         const remaining = target - posRef.current;
-        if (Math.abs(remaining) < 0.0004) {
+        if (Math.abs(remaining) < 0.0008) {
           posRef.current = target;
           paint();
           rafRef.current = null;
           return;
         }
-        posRef.current += remaining * 0.16;
+        posRef.current += remaining * speed;
         paint();
         rafRef.current = requestAnimationFrame(step);
       };
       rafRef.current = requestAnimationFrame(step);
     },
-    [indexAt, paint],
+    [indexAt, paint, speed],
   );
 
   const clamp = React.useCallback(
