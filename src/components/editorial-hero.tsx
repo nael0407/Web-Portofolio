@@ -162,13 +162,13 @@ export function EditorialHero({
         <div className="relative z-10 flex-1 w-full px-4 sm:px-6 md:px-8 pl-4 min-[500px]:pl-16 sm:pl-18 md:pl-20 lg:pl-24 pr-4 sm:pr-6 md:pr-8 lg:pr-10 flex flex-col min-[500px]:flex-row items-center min-[500px]:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 md:pb-8 min-h-0">
           {/* Left Column: Editorial Portrait Card (Fluid Viewport Bounds) */}
           <div className="relative shrink-0 mb-3 min-[500px]:mb-0 group">
-            <div className="relative h-[clamp(210px,36vh,340px)] aspect-[4/5] rounded-2xl sm:rounded-3xl lg:rounded-[30px] overflow-hidden border border-[#BAE6FD] bg-[#090A0F] shadow-2xl transition-all duration-300 group-hover:border-[#0284C7] group-hover:shadow-[0_20px_50px_rgba(2,132,199,0.25)]">
+            <div className="relative h-[clamp(270px,45vh,430px)] aspect-[4/5] rounded-2xl sm:rounded-3xl lg:rounded-[30px] overflow-hidden border border-[#BAE6FD] bg-[#090A0F] shadow-2xl transition-all duration-300 group-hover:border-[#0284C7] group-hover:shadow-[0_20px_50px_rgba(2,132,199,0.25)]">
               <Image
                 src="/images/natanael-hero.jpg"
                 alt="Natanael Sebastian Simanjuntak"
                 fill
-                sizes="(max-width: 640px) 220px, (max-width: 1024px) 300px, 380px"
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 440px"
+                className="object-cover object-top scale-[1.45] origin-[50%_18%] transition-transform duration-500 group-hover:scale-[1.5]"
                 priority
               />
             </div>
