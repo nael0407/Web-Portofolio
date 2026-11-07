@@ -1,84 +1,55 @@
 "use client";
 
 import React from "react";
-import { Award, CheckCircle2, Sparkles, Network, Cloud } from "lucide-react";
-import { motion } from "motion/react";
+import { Award } from "lucide-react";
 import { HeroBackground } from "@/components/ui/tweenly-hero-background";
+import { OfferCarousel, type Offer } from "@/components/ui/offer-carousel";
 
-export interface CertificationItem {
-  id: string;
-  title: string;
-  issuer: string;
-  issuerBadge: string;
-  year: string;
-  category: string;
-  code: string;
-  icon: React.ElementType;
-  description: string;
-  skills: string[];
-  credentialStatus: string;
-}
-
-const CERTIFICATIONS: CertificationItem[] = [
+const CERTIFICATION_OFFERS: Offer[] = [
   {
     id: "aws-ai-practitioner",
+    imageSrc:
+      "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Artificial Intelligence and Foundation Models",
+    tag: "AI & ML",
     title: "AWS Certified AI Practitioner",
-    issuer: "Amazon Web Services (AWS)",
-    issuerBadge: "AWS",
-    year: "2026",
-    category: "Artificial Intelligence & ML",
-    code: "AWS-AIP",
-    icon: Sparkles,
     description:
-      "Validates comprehensive fundamentals of machine learning models, generative AI architectures, foundation models, responsible AI governance, and deployment of cloud AI workloads.",
-    skills: [
-      "AI/ML Fundamentals",
-      "Generative AI",
-      "Foundation Models",
-      "Responsible AI",
-      "AWS Bedrock & SageMaker",
-    ],
-    credentialStatus: "Active Credential",
+      "Validates in-depth fundamentals of machine learning models, generative AI architectures, foundation models, and responsible AI governance.",
+    brandLogoSrc:
+      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230284C7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z'/></svg>",
+    brandName: "Amazon Web Services",
+    promoCode: "AWS-AIP • 2026",
+    href: "/cv.pdf",
   },
   {
     id: "cisco-ccna-itn",
+    imageSrc:
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Network Infrastructure, Switching, and Routing",
+    tag: "Networking",
     title: "CCNA: Introduction to Networks",
-    issuer: "Cisco Systems",
-    issuerBadge: "Cisco",
-    year: "2026",
-    category: "Network Engineering",
-    code: "CCNA-ITN",
-    icon: Network,
     description:
-      "Validates core networking architectures, IPv4 and IPv6 addressing and variable-length subnetting, Ethernet switching operations, router configuration, and enterprise network security fundamentals.",
-    skills: [
-      "IP Addressing & Subnetting",
-      "Ethernet Switching",
-      "Routing Protocols",
-      "Network Security",
-      "OSI & TCP/IP Models",
-    ],
-    credentialStatus: "Active Credential",
+      "Validates core networking architectures, IPv4/IPv6 addressing and subnetting, Ethernet switching operations, and enterprise network security.",
+    brandLogoSrc:
+      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230284C7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='20' height='8' x='2' y='14' rx='2'/><path d='M6 18h.01'/><path d='M10 18h.01'/><path d='M15 10v4'/><path d='M9 10v4'/><path d='M12 6v8'/></svg>",
+    brandName: "Cisco Systems",
+    promoCode: "CCNA-ITN • 2026",
+    href: "/cv.pdf",
   },
   {
     id: "aws-academy-cloud-web-app",
-    title: "AWS Academy Cloud Web Application Builder",
-    issuer: "AWS Academy",
-    issuerBadge: "AWS Academy",
-    year: "2026",
-    category: "Cloud Architecture & DevOps",
-    code: "AWS-ACADEMY",
-    icon: Cloud,
+    imageSrc:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Cloud Native Scalable Web Infrastructure",
+    tag: "Cloud Native",
+    title: "AWS Academy Cloud Web App Builder",
     description:
-      "Validates the design, deployment, and operation of scalable, fault-tolerant, and highly-available cloud-native web application infrastructures leveraging AWS compute, storage, and VPC networks.",
-    skills: [
-      "Cloud-Native Infrastructure",
-      "EC2 & Lambda Compute",
-      "VPC Networking",
-      "S3 & Storage",
-      "High Availability",
-    ],
-    credentialStatus: "Active Credential",
+      "Validates design, deployment, and operation of resilient cloud-native web application infrastructures on AWS compute, VPC, and storage.",
+    brandLogoSrc:
+      "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230284C7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z'/><path d='M6 6h10'/><path d='M6 10h10'/></svg>",
+    brandName: "AWS Academy",
+    promoCode: "AWS-ACADEMY • 2026",
+    href: "/cv.pdf",
   },
 ];
 
@@ -89,6 +60,7 @@ export function CertificationsSection() {
        Latar: Ice Blue canvas (#E6F3FA)
        Teks: Midnight Ink (#090D16)
        Aksen: Ice Blue (#0284C7 / #BAE6FD / #E0F2FE)
+       Showcase: OfferCarousel component adapted for 3 certifications
     ───────────────────────────────────────────────────────────── */
     <section
       id="certifications"
@@ -115,8 +87,8 @@ export function CertificationsSection() {
         className="w-full h-full bg-transparent"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-          {/* Section Header */}
-          <div className="mb-14 pb-8 border-b border-[#BAE6FD]">
+          {/* Section Header (Minimalist & Clean: No Subtitle, No Pill) */}
+          <div className="mb-12 pb-8 border-b border-[#BAE6FD]">
             <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-[#0284C7] mb-3">
               <Award className="w-3.5 h-3.5" />
               <span>05 / VERIFIED CREDENTIALS</span>
@@ -126,92 +98,9 @@ export function CertificationsSection() {
             </h2>
           </div>
 
-          {/* 3-Column Responsive Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {CERTIFICATIONS.map((cert, index) => {
-              const Icon = cert.icon;
-              return (
-                <motion.div
-                  key={cert.id}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: index * 0.12 }}
-                  className="group relative flex flex-col justify-between rounded-2xl sm:rounded-3xl bg-[#FFFFFF] border border-[#BAE6FD] p-6 sm:p-7 shadow-lg shadow-[#0284C7]/5 hover:shadow-2xl hover:shadow-[#0284C7]/15 hover:border-[#0284C7] transition-all duration-300"
-                >
-                  {/* Subtle Top Card Glow on Hover */}
-                  <div
-                    className="pointer-events-none absolute -inset-px rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#0284C7]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    aria-hidden="true"
-                  />
-
-                  <div className="relative z-10 space-y-5">
-                    {/* Top Row: Icon + Badges */}
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-[#F0F8FD] border border-[#BAE6FD] text-[#0284C7] flex items-center justify-center shadow-sm group-hover:scale-105 group-hover:bg-[#0284C7] group-hover:text-white transition-all duration-300">
-                        <Icon className="w-6 h-6" />
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-[11px] font-bold text-[#0284C7] px-2.5 py-1 rounded-lg bg-[#F0F8FD] border border-[#BAE6FD]">
-                          {cert.issuerBadge}
-                        </span>
-                        <span className="font-mono text-[11px] text-[#090D16]/60 px-2 py-1 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
-                          {cert.year}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Category & Title */}
-                    <div className="space-y-1.5">
-                      <span className="font-mono text-[11px] uppercase tracking-wider text-[#0284C7] font-semibold block">
-                        {cert.category}
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#090D16] group-hover:text-[#0284C7] transition-colors leading-snug">
-                        {cert.title}
-                      </h3>
-                      <p className="text-xs font-medium text-[#090D16]/65">
-                        Issued by {cert.issuer}
-                      </p>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-xs sm:text-[13px] text-[#090D16]/80 leading-relaxed pt-1">
-                      {cert.description}
-                    </p>
-
-                    {/* Skill Tags */}
-                    <div className="pt-2">
-                      <div className="text-[10px] font-mono uppercase tracking-wider text-[#090D16]/60 mb-2 font-bold">
-                        Competencies Verified:
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {cert.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#F0F8FD] text-[#090D16] border border-[#BAE6FD]/80 group-hover:border-[#BAE6FD] transition-colors"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Card Foot: Active Status Indicator */}
-                  <div className="relative z-10 pt-5 mt-5 border-t border-[#BAE6FD]/70 flex items-center justify-between text-xs font-mono">
-                    <div className="flex items-center gap-1.5 text-[#0284C7] font-semibold">
-                      <CheckCircle2 className="w-4 h-4 text-[#0284C7]" />
-                      <span>{cert.credentialStatus}</span>
-                    </div>
-
-                    <span className="text-[11px] text-[#090D16]/50 uppercase tracking-wider font-semibold">
-                      {cert.code}
-                    </span>
-                  </div>
-                </motion.div>
-              );
-            })}
+          {/* Interactive OfferCarousel Showcase */}
+          <div className="w-full">
+            <OfferCarousel offers={CERTIFICATION_OFFERS} />
           </div>
         </div>
       </HeroBackground>
