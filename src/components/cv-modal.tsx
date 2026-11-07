@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Download, ExternalLink, FileText, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { useMounted } from "@/hooks/use-mounted";
 
 interface CvModalProps {
   isOpen: boolean;
@@ -12,12 +14,13 @@ interface CvModalProps {
 
 export function CvModal({ isOpen, onClose }: CvModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const mounted = useMounted();
 
   useOutsideClick(modalRef, () => {
     if (isOpen) onClose();
   });
 
-  // ESC key and body scroll lock
+  // ESC key and strict html/body scroll lock
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -27,25 +30,32 @@ export function CvModal({ isOpen, onClose }: CvModalProps) {
 
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
       window.addEventListener("keydown", onKeyDown);
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isOpen, onClose]);
 
-  return (
+  if (!mounted || typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div
           role="dialog"
           aria-modal="true"
           aria-label="Curriculum Vitae Preview"
-          className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-hidden"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-hidden"
         >
           {/* Backdrop */}
           <motion.div
@@ -53,7 +63,7 @@ export function CvModal({ isOpen, onClose }: CvModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/85 backdrop-blur-md cursor-pointer"
+            className="fixed inset-0 bg-black/85 backdrop-blur-md cursor-pointer z-[9998]"
           />
 
           {/* Modal Container */}
@@ -63,7 +73,7 @@ export function CvModal({ isOpen, onClose }: CvModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 16 }}
             transition={{ type: "spring", damping: 26, stiffness: 320 }}
-            className="relative w-full max-w-5xl h-[92vh] sm:h-[90vh] bg-[#090D16] border border-[#BAE6FD] rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_rgba(2,132,199,0.2)] flex flex-col overflow-hidden z-10 text-[#090D16]"
+            className="relative w-full max-w-5xl h-[92vh] sm:h-[90vh] bg-[#090D16] border border-[#BAE6FD] rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_rgba(2,132,199,0.2)] flex flex-col overflow-hidden z-[9999] text-[#090D16]"
           >
             {/* ─────────────────────────────────────────────────────────────
                 TOP TOOLBAR: MIDNIGHT INK & ICE BLUE
@@ -159,6 +169,7 @@ export function CvModal({ isOpen, onClose }: CvModalProps) {
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

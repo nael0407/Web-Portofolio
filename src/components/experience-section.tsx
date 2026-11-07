@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Calendar, ArrowUpRight, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { useMounted } from "@/hooks/use-mounted";
 import { HeroBackground } from "@/components/ui/tweenly-hero-background";
 
 interface ExperienceData {
@@ -79,9 +81,10 @@ const ROBOTICS_EXPERIENCE: ExperienceData = {
 
 export function ExperienceSection() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const mounted = useMounted();
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal with Escape key
+  // Close modal with Escape key and lock body/html scroll
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -90,13 +93,16 @@ export function ExperienceSection() {
     }
     if (isExpanded) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
       window.addEventListener("keydown", onKeyDown);
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
     return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "auto";
     };
   }, [isExpanded]);
 
@@ -241,43 +247,44 @@ export function ExperienceSection() {
       </HeroBackground>
 
       {/* ─────────────────────────────────────────────────────────────
-         EXPANDED MODAL (Midnight Ink + Ice Blue Palette)
+         EXPANDED MODAL (Portalled to document.body, z-[9999])
       ───────────────────────────────────────────────────────────── */}
-      <AnimatePresence>
-        {isExpanded && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-[#090D16]/65 backdrop-blur-md h-full w-full z-40"
-          />
-        )}
-      </AnimatePresence>
+      {mounted && typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {isExpanded && (
+            <div className="fixed inset-0 z-[9999] overflow-hidden">
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsExpanded(false)}
+                className="fixed inset-0 bg-[#090D16]/65 backdrop-blur-md h-full w-full z-[9998] cursor-pointer"
+              />
 
-      <AnimatePresence>
-        {isExpanded && (
-          <div className="fixed inset-0 grid place-items-center z-50 p-4 sm:p-6 overflow-y-auto">
-            {/* Close Button */}
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.05 } }}
-              className="flex absolute top-4 right-4 sm:top-6 sm:right-6 items-center justify-center bg-[#FFFFFF] border border-[#BAE6FD] hover:bg-[#F0F8FD] hover:border-[#0284C7] text-[#090D16] rounded-full h-9 w-9 z-20 cursor-pointer shadow-xl transition-colors"
-              onClick={() => setIsExpanded(false)}
-              aria-label="Close modal"
-            >
-              <X className="w-4 h-4 text-[#090D16]" />
-            </motion.button>
+              {/* Modal Container */}
+              <div className="fixed inset-0 grid place-items-center z-[9999] p-4 sm:p-6 overflow-y-auto">
+                {/* Close Button */}
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.05 } }}
+                  className="flex fixed top-4 right-4 sm:top-6 sm:right-6 items-center justify-center bg-[#FFFFFF] border border-[#BAE6FD] hover:bg-[#F0F8FD] hover:border-[#0284C7] text-[#090D16] rounded-full h-9 w-9 z-[10000] cursor-pointer shadow-xl transition-colors"
+                  onClick={() => setIsExpanded(false)}
+                  aria-label="Close modal"
+                >
+                  <X className="w-4 h-4 text-[#090D16]" />
+                </motion.button>
 
-            {/* Modal Body: Two-Column Split (Left: Robot Photo, Right: Explanations) in Midnight Ink + Ice Blue */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 16 }}
-              transition={{ type: "spring", damping: 25, stiffness: 320 }}
-              ref={modalRef}
-              className="w-full max-w-[940px] max-h-[92vh] flex flex-col md:flex-row bg-[#FFFFFF] border border-[#BAE6FD] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-[#0284C7]/15"
-            >
+                {/* Modal Body: Two-Column Split (Left: Robot Photo, Right: Explanations) in Midnight Ink + Ice Blue */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.92, y: 16 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.92, y: 16 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 320 }}
+                  ref={modalRef}
+                  className="relative z-[9999] w-full max-w-[940px] max-h-[92vh] flex flex-col md:flex-row bg-[#FFFFFF] border border-[#BAE6FD] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-[#0284C7]/15"
+                >
               {/* LEFT COLUMN: Photo Sent by User */}
               <div className="relative w-full md:w-[42%] lg:w-[40%] shrink-0 bg-[#F0F8FD] flex flex-col justify-between overflow-hidden border-b md:border-b-0 md:border-r border-[#BAE6FD]">
                 <div className="relative h-64 sm:h-80 md:h-full w-full overflow-hidden min-h-[300px] md:min-h-[500px]">
@@ -401,8 +408,11 @@ export function ExperienceSection() {
               </div>
             </motion.div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
+    </AnimatePresence>,
+    document.body
+  )}
     </section>
   );
 }

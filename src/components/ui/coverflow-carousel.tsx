@@ -1,11 +1,13 @@
 "use client";
 
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
 import { GithubIcon } from "@/components/icons";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
 const useIsoLayoutEffect =
@@ -133,7 +135,9 @@ export function CoverflowCarousel({
     if (activeModal) setActiveModal(null);
   });
 
-  // ESC key and body scroll lock
+  const mounted = useMounted();
+
+  // ESC key and strict html/body scroll lock
   React.useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -143,12 +147,18 @@ export function CoverflowCarousel({
 
     if (activeModal) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [activeModal]);
 
   /** Nearest whole card, folded back into 0..count-1. */
@@ -352,44 +362,45 @@ export function CoverflowCarousel({
       aria-label={label}
     >
       {/* ─────────────────────────────────────────────────────────────
-         ACETERNITY EXPANDABLE MODAL (When any card is clicked/pressed)
+         ACETERNITY EXPANDABLE MODAL (Portalled to document.body, z-[9999])
       ───────────────────────────────────────────────────────────── */}
-      <AnimatePresence>
-        {activeModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/85 backdrop-blur-md h-full w-full z-40"
-          />
-        )}
-      </AnimatePresence>
+      {mounted && typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {activeModal && (
+            <div className="fixed inset-0 z-[9999] overflow-hidden">
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setActiveModal(null)}
+                className="fixed inset-0 bg-black/85 backdrop-blur-md h-full w-full z-[9998] cursor-pointer"
+              />
 
-      <AnimatePresence>
-        {activeModal && (
-          <div className="fixed inset-0 grid place-items-center z-50 p-4 sm:p-6 overflow-y-auto">
-            {/* Close Button */}
-            <motion.button
-              key={`close-button-${activeModal.id || activeModal.title}`}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.05 } }}
-              className="flex absolute top-4 right-4 sm:top-6 sm:right-6 items-center justify-center bg-[#181B26] border border-[#2A324B] hover:bg-[#252B3B] text-[#FFFFFF] rounded-full h-9 w-9 z-10 cursor-pointer shadow-xl transition-colors"
-              onClick={() => setActiveModal(null)}
-              aria-label="Close modal"
-            >
-              <CloseIcon />
-            </motion.button>
+              {/* Modal Container */}
+              <div className="fixed inset-0 grid place-items-center z-[9999] p-4 sm:p-6 overflow-y-auto">
+                {/* Close Button */}
+                <motion.button
+                  key={`close-button-${activeModal.id || activeModal.title}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.05 } }}
+                  className="flex fixed top-4 right-4 sm:top-6 sm:right-6 items-center justify-center bg-[#181B26] border border-[#2A324B] hover:bg-[#252B3B] text-[#FFFFFF] rounded-full h-9 w-9 z-[10000] cursor-pointer shadow-xl transition-colors"
+                  onClick={() => setActiveModal(null)}
+                  aria-label="Close modal"
+                >
+                  <CloseIcon />
+                </motion.button>
 
-            {/* Modal Body */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 16 }}
-              transition={{ type: "spring", damping: 25, stiffness: 320 }}
-              ref={modalRef}
-              className="w-full max-w-[720px] max-h-[92vh] flex flex-col bg-[#11131B] border border-[#1E2333] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl"
-            >
+                {/* Modal Body */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.92, y: 16 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.92, y: 16 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 320 }}
+                  ref={modalRef}
+                  className="relative z-[9999] w-full max-w-[720px] max-h-[92vh] flex flex-col bg-[#11131B] border border-[#1E2333] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl"
+                >
               {/* Header Image */}
               <div className="relative h-56 sm:h-64 w-full overflow-hidden shrink-0 bg-[#181B26]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -478,8 +489,11 @@ export function CoverflowCarousel({
               </div>
             </motion.div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
+    </AnimatePresence>,
+    document.body
+  )}
 
       {/* ─────────────────────────────────────────────────────────────
          3D COVERFLOW FRAME
