@@ -18,6 +18,7 @@ export interface Offer {
   brandName: string;
   promoCode?: string;
   href: string;
+  imageFit?: "cover" | "contain";
 }
 
 // Props for the OfferCard component
@@ -41,23 +42,47 @@ const OfferCard = React.forwardRef<HTMLAnchorElement, OfferCardProps>(({ offer, 
     transition={{ type: "spring", stiffness: 300, damping: 20 }}
     style={{ perspective: "1000px" }}
   >
-    {/* Background Image */}
-    <div className="relative w-full h-1/2 overflow-hidden bg-[#090A0F]">
-      <img
-        src={offer.imageSrc}
-        alt={offer.imageAlt}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+    {/* Header: Background Image or Centered Credential Badge */}
+    <div
+      className={cn(
+        "relative w-full h-[52%] overflow-hidden",
+        offer.imageFit === "contain"
+          ? "flex items-center justify-center p-4 bg-gradient-to-b from-[#F0F8FD] to-[#E2F0F9] border-b border-[#BAE6FD]/80"
+          : "bg-[#090A0F]"
+      )}
+    >
+      {offer.imageFit === "contain" ? (
+        <img
+          src={offer.imageSrc}
+          alt={offer.imageAlt}
+          className="w-28 h-28 sm:w-32 sm:h-32 object-contain drop-shadow-[0_10px_20px_rgba(2,132,199,0.2)] transition-transform duration-500 group-hover:scale-110 select-none"
+        />
+      ) : (
+        <>
+          <img
+            src={offer.imageSrc}
+            alt={offer.imageAlt}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+        </>
+      )}
       {offer.tag && (
-        <div className="absolute top-3 right-3 font-mono text-[10px] font-bold text-white px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/20">
+        <div
+          className={cn(
+            "absolute top-3 right-3 font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full border shadow-sm",
+            offer.imageFit === "contain"
+              ? "text-[#0284C7] bg-[#FFFFFF]/90 backdrop-blur-md border-[#BAE6FD]"
+              : "text-white bg-black/70 backdrop-blur-md border-white/20"
+          )}
+        >
           {offer.tag}
         </div>
       )}
     </div>
 
     {/* Card Content */}
-    <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#FFFFFF] p-5 flex flex-col justify-between text-[#090D16]">
+    <div className="h-[48%] bg-[#FFFFFF] p-5 flex flex-col justify-between text-[#090D16]">
       <div className="space-y-1.5">
         {/* Tag */}
         <div className="flex items-center text-xs font-mono font-semibold text-[#0284C7]">
