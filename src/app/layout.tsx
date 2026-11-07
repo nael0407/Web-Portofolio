@@ -4,17 +4,31 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Full-Stack Developer & Software Engineer | Portfolio",
+  title: "Natanael Sebastian Simanjuntak — Portfolio",
   description:
-    "Clean, minimalist, and high-performance portfolio showcasing full-stack systems, modern web apps, and engineering craft.",
+    "Portfolio of Natanael Sebastian Simanjuntak — AI, Network Security & Forensics, Cloud-Native Infrastructure, and Robotics Perception.",
   keywords: [
-    "Full-Stack Developer",
-    "Frontend Engineer",
+    "Natanael Sebastian Simanjuntak",
+    "Computer Vision",
+    "Deep Learning",
+    "Network Security",
+    "Digital Forensics",
+    "Kubernetes",
+    "Cloud Infrastructure",
     "Next.js",
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
   ],
+  authors: [
+    {
+      name: "Natanael Sebastian Simanjuntak",
+      url: "https://github.com/nael0407",
+    },
+  ],
+  openGraph: {
+    title: "Natanael Sebastian Simanjuntak — Portfolio",
+    description:
+      "Engineering portfolio of Natanael Sebastian Simanjuntak — AI, Network Security & Forensics, and Cloud-Native Infrastructure.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
