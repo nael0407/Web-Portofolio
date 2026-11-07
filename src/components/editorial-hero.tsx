@@ -34,7 +34,7 @@ export function EditorialHero({
     ───────────────────────────────────────────────────────────── */
     <section
       id="hero"
-      className="relative w-full h-[calc(100vh/1.4)] min-h-[460px] max-h-[920px] flex flex-col justify-between overflow-hidden bg-[#F0F8FD] text-[#090D16]"
+      className="relative w-full h-[calc(100vh/1.4)] min-h-[520px] max-h-[960px] flex flex-col justify-between overflow-hidden bg-[#F0F8FD] text-[#090D16]"
     >
       {/* Subtle Ambient Ice Blue Glow Auras */}
       <div
@@ -45,6 +45,24 @@ export function EditorialHero({
         className="pointer-events-none absolute -bottom-40 -left-40 w-[550px] h-[550px] bg-[#E0F2FE]/50 blur-[150px] rounded-full -z-0"
         aria-hidden="true"
       />
+
+      {/* Prominent Top-Right 3D Wireframe Interactive Sphere (Floating, Enlarged Art) */}
+      <div className="absolute top-2 sm:top-4 right-4 sm:right-8 md:right-10 lg:right-12 z-20 pointer-events-none">
+        <div
+          aria-label="Wireframe 3D Sphere"
+          className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-56 xl:h-56 flex items-center justify-center border-0 outline-none shadow-none bg-transparent"
+        >
+          <WireframeForms
+            variant="sphere"
+            mode="light"
+            background="transparent"
+            speed={1.5}
+            size={1.05}
+            length={1}
+            className="w-full h-full pointer-events-none"
+          />
+        </div>
+      </div>
 
       <HeroBackground
         variant="dots"
@@ -59,7 +77,6 @@ export function EditorialHero({
         {/* ─────────────────────────────────────────────────────────────
             1. TOP NAVIGATION BAR
             - Top-Left: Nav Links (HERO, PROJECT, EXPERIENCE, SKILLS, CONTACT)
-            - Top-Right: 3D Wireframe Forms Interactive Sphere (Pinned, Compact)
         ───────────────────────────────────────────────────────────── */}
         <header className="relative z-20 w-full px-4 sm:px-6 md:px-8 lg:px-10 pt-3 sm:pt-4 pb-1 sm:pb-2 flex items-center justify-between gap-4 shrink-0">
           {/* Top-Left: Nav Links */}
@@ -96,23 +113,8 @@ export function EditorialHero({
             </Link>
           </nav>
 
-          {/* Top-Right: Wireframe Interactive Sphere (Sleek, Non-intrusive) */}
-          <div className="flex items-center justify-end shrink-0">
-            <div
-              aria-label="Wireframe 3D Sphere"
-              className="w-14 h-14 sm:w-16 sm:h-16 md:w-[72px] md:h-[72px] flex items-center justify-center border-0 outline-none shadow-none bg-transparent"
-            >
-              <WireframeForms
-                variant="sphere"
-                mode="light"
-                background="transparent"
-                speed={1.5}
-                size={0.9}
-                length={1}
-                className="w-full h-full pointer-events-none"
-              />
-            </div>
-          </div>
+          {/* Reserved spacer for header alignment against 3D art */}
+          <div className="w-12 h-8 pointer-events-none" aria-hidden="true" />
         </header>
 
         {/* ─────────────────────────────────────────────────────────────
@@ -157,18 +159,18 @@ export function EditorialHero({
         {/* ─────────────────────────────────────────────────────────────
             3. HERO MAIN BODY (Portrait on Left, Summary & Name on Right)
             - Fluid responsive 2-column flexbox from 500px screens upwards
-            - Proportional viewport-relative dimensions that never push off-screen
+            - Prominently enlarged face photo and fluid monumental typography
         ───────────────────────────────────────────────────────────── */}
         <div className="relative z-10 flex-1 w-full px-4 sm:px-6 md:px-8 pl-4 min-[500px]:pl-16 sm:pl-18 md:pl-20 lg:pl-24 pr-4 sm:pr-6 md:pr-8 lg:pr-10 flex flex-col min-[500px]:flex-row items-center min-[500px]:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 md:pb-8 min-h-0">
-          {/* Left Column: Editorial Portrait Card (Fluid Viewport Bounds) */}
+          {/* Left Column: Enlarged Editorial Portrait Card (Focused on Face) */}
           <div className="relative shrink-0 mb-3 min-[500px]:mb-0 group">
-            <div className="relative h-[clamp(270px,45vh,430px)] aspect-[4/5] rounded-2xl sm:rounded-3xl lg:rounded-[30px] overflow-hidden border border-[#BAE6FD] bg-[#090A0F] shadow-2xl transition-all duration-300 group-hover:border-[#0284C7] group-hover:shadow-[0_20px_50px_rgba(2,132,199,0.25)]">
+            <div className="relative h-[clamp(320px,52vh,500px)] aspect-[4/5] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden border border-[#BAE6FD] bg-[#090A0F] shadow-2xl transition-all duration-300 group-hover:border-[#0284C7] group-hover:shadow-[0_20px_50px_rgba(2,132,199,0.25)]">
               <Image
                 src="/images/natanael-hero.jpg"
                 alt="Natanael Sebastian Simanjuntak"
                 fill
-                sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 440px"
-                className="object-cover object-top scale-[1.45] origin-[50%_18%] transition-transform duration-500 group-hover:scale-[1.5]"
+                sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 500px"
+                className="object-cover object-top scale-[1.65] origin-[50%_16%] transition-transform duration-500 group-hover:scale-[1.72]"
                 priority
               />
             </div>
