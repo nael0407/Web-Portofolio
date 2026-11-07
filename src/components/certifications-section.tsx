@@ -51,6 +51,36 @@ const CERTIFICATION_OFFERS: Offer[] = [
     promoCode: "Verify on Credly ↗",
     href: "https://www.credly.com/badges/c26b3ad0-723a-41e0-8581-0513001a25cc/public_url",
   },
+  {
+    id: "datacamp-dl-images-pytorch",
+    imageSrc: "/images/certifications/datacamp-deep-learning-images-pytorch.png",
+    imageAlt: "DataCamp Deep Learning for Images with PyTorch Certificate",
+    imageFit: "certificate",
+    tag: "Computer Vision",
+    title: "Deep Learning for Images with PyTorch",
+    description:
+      "Mastery in Convolutional Neural Networks (CNNs), feature extraction, pooling, transfer learning with pre-trained models, and image recognition.",
+    brandLogoSrc:
+      "data:image/svg+xml;utf8,<svg role='img' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' style='background:%2305192D;border-radius:50%;padding:3px;'><path fill='%2303EF62' d='M12.946 18.151v-5.239L21.209 8.2 19.2 7.048l-6.254 3.567V5.36c0-.356-.192-.689-.5-.866L4.922.177a1.434 1.434 0 0 0-1.455.044 1.438 1.438 0 0 0-.676 1.224v14.777A1.44 1.44 0 0 0 4.92 17.49l6.032-3.44v4.683a1 1 0 0 0 .504.867l7.73 4.4 2.01-1.152-8.25-4.697zM10.953 5.938v5.814L4.785 15.27V2.4l6.168 3.539v-.001z'/></svg>",
+    brandName: "DataCamp",
+    promoCode: "Statement #47,589,282 ↗",
+    href: "/certificates/datacamp-deep-learning-images-pytorch.pdf",
+  },
+  {
+    id: "datacamp-intermediate-dl-pytorch",
+    imageSrc: "/images/certifications/datacamp-intermediate-deep-learning-pytorch.png",
+    imageAlt: "DataCamp Intermediate Deep Learning with PyTorch Certificate",
+    imageFit: "certificate",
+    tag: "Deep Learning",
+    title: "Intermediate Deep Learning with PyTorch",
+    description:
+      "Hands-on training in custom PyTorch training loops, loss functions, optimizers, activation functions, and deep multi-layer neural architectures.",
+    brandLogoSrc:
+      "data:image/svg+xml;utf8,<svg role='img' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' style='background:%2305192D;border-radius:50%;padding:3px;'><path fill='%2303EF62' d='M12.946 18.151v-5.239L21.209 8.2 19.2 7.048l-6.254 3.567V5.36c0-.356-.192-.689-.5-.866L4.922.177a1.434 1.434 0 0 0-1.455.044 1.438 1.438 0 0 0-.676 1.224v14.777A1.44 1.44 0 0 0 4.92 17.49l6.032-3.44v4.683a1 1 0 0 0 .504.867l7.73 4.4 2.01-1.152-8.25-4.697zM10.953 5.938v5.814L4.785 15.27V2.4l6.168 3.539v-.001z'/></svg>",
+    brandName: "DataCamp",
+    promoCode: "Statement #47,585,866 ↗",
+    href: "/certificates/datacamp-intermediate-deep-learning-pytorch.pdf",
+  },
 ];
 
 export function CertificationsSection() {

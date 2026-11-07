@@ -18,7 +18,7 @@ export interface Offer {
   brandName: string;
   promoCode?: string;
   href: string;
-  imageFit?: "cover" | "contain";
+  imageFit?: "cover" | "contain" | "certificate";
 }
 
 // Props for the OfferCard component
@@ -42,16 +42,24 @@ const OfferCard = React.forwardRef<HTMLAnchorElement, OfferCardProps>(({ offer, 
     transition={{ type: "spring", stiffness: 300, damping: 20 }}
     style={{ perspective: "1000px" }}
   >
-    {/* Header: Background Image or Centered Credential Badge */}
+    {/* Header: Background Image, Centered Badge, or Framed Certificate */}
     <div
       className={cn(
         "relative w-full h-[52%] overflow-hidden",
-        offer.imageFit === "contain"
-          ? "flex items-center justify-center p-4 bg-gradient-to-b from-[#F0F8FD] to-[#E2F0F9] border-b border-[#BAE6FD]/80"
+        offer.imageFit === "contain" || offer.imageFit === "certificate"
+          ? "flex items-center justify-center p-3 sm:p-4 bg-gradient-to-b from-[#F0F8FD] to-[#E2F0F9] border-b border-[#BAE6FD]/80"
           : "bg-[#090A0F]"
       )}
     >
-      {offer.imageFit === "contain" ? (
+      {offer.imageFit === "certificate" ? (
+        <div className="w-full h-full flex items-center justify-center">
+          <img
+            src={offer.imageSrc}
+            alt={offer.imageAlt}
+            className="w-full h-full object-contain rounded-md sm:rounded-lg shadow-md border border-[#BAE6FD] transition-transform duration-500 group-hover:scale-105 select-none"
+          />
+        </div>
+      ) : offer.imageFit === "contain" ? (
         <img
           src={offer.imageSrc}
           alt={offer.imageAlt}
@@ -67,7 +75,7 @@ const OfferCard = React.forwardRef<HTMLAnchorElement, OfferCardProps>(({ offer, 
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
         </>
       )}
-      {offer.tag && (
+      {offer.tag && offer.imageFit !== "certificate" && (
         <div
           className={cn(
             "absolute top-3 right-3 font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full border shadow-sm",
