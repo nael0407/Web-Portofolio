@@ -26,11 +26,14 @@
   html {
     scroll-behavior: smooth;
     background-color: #090A0F;
+    zoom: 140%;
+    overflow-x: hidden;
   }
   body {
     background-color: #090A0F;
     color: #F8FAFC;
     font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
   }
   ::selection {
     background-color: #0284C7;

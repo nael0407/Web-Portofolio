@@ -34,7 +34,7 @@ export function EditorialHero({
     ───────────────────────────────────────────────────────────── */
     <section
       id="hero"
-      className="relative w-full min-h-screen bg-[#F0F8FD] text-[#090D16] flex flex-col justify-between overflow-hidden"
+      className="relative w-full h-[calc(100vh/1.4)] min-h-[460px] max-h-[920px] flex flex-col justify-between overflow-hidden bg-[#F0F8FD] text-[#090D16]"
     >
       {/* Subtle Ambient Ice Blue Glow Auras */}
       <div
@@ -54,185 +54,187 @@ export function EditorialHero({
         density={0.85}
         size={1.5}
         mask="fade-bottom"
-        className="relative z-10 w-full min-h-screen flex flex-col justify-between flex-1 bg-transparent"
+        className="relative z-10 w-full h-full flex flex-col justify-between flex-1 bg-transparent"
       >
         {/* ─────────────────────────────────────────────────────────────
             1. TOP NAVIGATION BAR
             - Top-Left: Nav Links (HERO, PROJECT, EXPERIENCE, SKILLS, CONTACT)
-            - Top-Right: Enlarged 3D Wireframe Forms Interactive Sphere
+            - Top-Right: 3D Wireframe Forms Interactive Sphere (Pinned, Compact)
         ───────────────────────────────────────────────────────────── */}
-        <header className="relative z-20 w-full px-4 sm:px-6 md:px-8 lg:px-10 pt-6 sm:pt-8 lg:pt-9 pb-2 flex items-start justify-between gap-6">
-        {/* Top-Left: Nav Links */}
-        <nav className="flex items-center justify-start gap-4 sm:gap-7 lg:gap-9 text-xs font-bold tracking-[0.22em] text-[#090D16]/80 font-mono overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pt-1">
-          <Link
-            href="#hero"
-            className="text-[#090D16] hover:text-[#0284C7] transition-colors whitespace-nowrap"
-          >
-            HERO
-          </Link>
-          <Link
-            href="#projects"
-            className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
-          >
-            PROJECT
-          </Link>
-          <Link
-            href="#experience"
-            className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
-          >
-            EXPERIENCE
-          </Link>
-          <Link
-            href="#skills"
-            className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
-          >
-            SKILLS
-          </Link>
-          <Link
-            href="#contact"
-            className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
-          >
-            CONTACT
-          </Link>
-        </nav>
-
-        {/* Top-Right: Enlarged 3D Wireframe Interactive Sphere (Borderless, Seamless Background) */}
-        <div className="flex items-center justify-end shrink-0">
-          <div
-            aria-label="Wireframe 3D Sphere"
-            className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 flex items-center justify-center group hover:scale-105 transition-transform duration-300 border-0 outline-none shadow-none bg-transparent"
-          >
-            <WireframeForms
-              variant="sphere"
-              mode="light"
-              background="transparent"
-              speed={1.5}
-              size={0.9}
-              length={1}
-              className="w-full h-full pointer-events-none"
-            />
-          </div>
-        </div>
-      </header>
-
-      {/* ─────────────────────────────────────────────────────────────
-          2. LEFT RAIL: SOCIAL CONNECTIONS (GH, IN, X, CV)
-          - Left-aligned to the far left margin
-          - 100% mathematically centered vertically on the viewport
-      ───────────────────────────────────────────────────────────── */}
-      <div className="hidden lg:flex absolute left-4 sm:left-6 md:left-8 lg:px-2 top-1/2 -translate-y-1/2 z-30 flex-col items-start gap-7 font-mono text-xs font-bold tracking-[0.25em] text-[#090D16]/75 text-left">
-        <a
-          href="https://github.com/nael0407"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#0284C7] transition-colors py-1 text-left"
-          aria-label="GitHub"
-        >
-          GH
-        </a>
-        <a
-          href="https://www.linkedin.com/in/natanael-simanjuntak"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#0284C7] transition-colors py-1 text-left"
-          aria-label="LinkedIn"
-        >
-          IN
-        </a>
-        <a
-          href="/cv.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => {
-            e.preventDefault();
-            setIsCvOpen(true);
-          }}
-          className="hover:text-[#0284C7] transition-colors py-1 text-left cursor-pointer"
-          aria-label="View Curriculum Vitae"
-        >
-          CV
-        </a>
-      </div>
-
-      {/* ─────────────────────────────────────────────────────────────
-          3. HERO MAIN BODY (Portrait on Left, Summary & Name on Right)
-      ───────────────────────────────────────────────────────────── */}
-      <div className="relative z-10 flex-1 w-full px-4 sm:px-6 md:px-8 lg:pl-20 xl:pl-24 lg:pr-8 xl:pr-12 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-8 pb-8 sm:pb-12 lg:pb-10">
-        {/* Left Column: Editorial Portrait Card (Magnified Dominant Scale) */}
-        <div className="relative shrink-0 mb-6 lg:mb-0 lg:translate-x-2 xl:translate-x-4 lg:-translate-y-4 xl:-translate-y-8 group">
-          <div className="relative w-72 h-[360px] sm:w-80 sm:h-[420px] md:w-96 md:h-[490px] lg:w-[420px] lg:h-[530px] xl:w-[470px] xl:h-[590px] 2xl:w-[560px] 2xl:h-[680px] rounded-2xl sm:rounded-3xl lg:rounded-[36px] overflow-hidden border border-[#BAE6FD] bg-[#090A0F] shadow-2xl transition-all duration-300 group-hover:border-[#0284C7] group-hover:shadow-[0_28px_70px_rgba(2,132,199,0.25)]">
-            <Image
-              src="/images/natanael-hero.jpg"
-              alt="Natanael Sebastian Simanjuntak"
-              fill
-              sizes="(max-width: 768px) 360px, (max-width: 1200px) 470px, 560px"
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Right Column: Summary + Monumental Name */}
-        <div className="w-full lg:w-auto flex-1 flex flex-col items-start lg:items-end text-left lg:text-right min-w-0">
-          {/* Mobile Social Connections (hanya muncul di layar mobile kecil) */}
-          <div className="flex lg:hidden flex-row items-center justify-start gap-6 font-mono text-xs font-bold tracking-[0.25em] text-[#090D16]/75 text-left py-2 mb-2">
-            <a
-              href="https://github.com/nael0407"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#0284C7] transition-colors"
+        <header className="relative z-20 w-full px-4 sm:px-6 md:px-8 lg:px-10 pt-3 sm:pt-4 pb-1 sm:pb-2 flex items-center justify-between gap-4 shrink-0">
+          {/* Top-Left: Nav Links */}
+          <nav className="flex items-center justify-start gap-3 sm:gap-5 md:gap-7 text-xs font-bold tracking-[0.2em] text-[#090D16]/80 font-mono overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1">
+            <Link
+              href="#hero"
+              className="text-[#090D16] hover:text-[#0284C7] transition-colors whitespace-nowrap"
             >
-              GH
-            </a>
-            <a
-              href="https://www.linkedin.com/in/natanael-simanjuntak"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#0284C7] transition-colors"
+              HERO
+            </Link>
+            <Link
+              href="#projects"
+              className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
             >
-              IN
-            </a>
-            <a
-              href="/cv.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsCvOpen(true);
-              }}
-              className="hover:text-[#0284C7] transition-colors cursor-pointer"
-              aria-label="View Curriculum Vitae"
+              PROJECT
+            </Link>
+            <Link
+              href="#experience"
+              className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
             >
-              CV
-            </a>
-          </div>
+              EXPERIENCE
+            </Link>
+            <Link
+              href="#skills"
+              className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
+            >
+              SKILLS
+            </Link>
+            <Link
+              href="#contact"
+              className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
+            >
+              CONTACT
+            </Link>
+          </nav>
 
-          {/* Summary Profile Block (Placed Directly Above the Name) */}
-          <div className="max-w-md lg:max-w-lg xl:max-w-xl mb-4 lg:mb-5">
-            <p className="font-sans text-xs sm:text-sm font-semibold tracking-wider text-[#090D16]/80 leading-relaxed uppercase">
-              {roleDescription}
-            </p>
-          </div>
-
-          {/* Monumental Display Name */}
-          <div className="w-full flex flex-col items-start lg:items-end space-y-0.5">
-            <div className="flex items-start gap-2 sm:gap-3 leading-none">
-              <span className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light text-[#0284C7] select-none mt-1 sm:mt-2">
-                ©
-              </span>
-              <span className="font-black text-4xl sm:text-6xl md:text-6xl lg:text-[3.8rem] xl:text-[4.7rem] 2xl:text-[6.2rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
-                {firstName}
-              </span>
-            </div>
-            <div className="font-black text-4xl sm:text-6xl md:text-6xl lg:text-[3.8rem] xl:text-[4.7rem] 2xl:text-[6.2rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
-              {middleName}
-            </div>
-            <div className="font-black text-4xl sm:text-6xl md:text-6xl lg:text-[3.8rem] xl:text-[4.7rem] 2xl:text-[6.2rem] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
-              {lastName}
+          {/* Top-Right: Wireframe Interactive Sphere (Sleek, Non-intrusive) */}
+          <div className="flex items-center justify-end shrink-0">
+            <div
+              aria-label="Wireframe 3D Sphere"
+              className="w-14 h-14 sm:w-16 sm:h-16 md:w-[72px] md:h-[72px] flex items-center justify-center border-0 outline-none shadow-none bg-transparent"
+            >
+              <WireframeForms
+                variant="sphere"
+                mode="light"
+                background="transparent"
+                speed={1.5}
+                size={0.9}
+                length={1}
+                className="w-full h-full pointer-events-none"
+              />
             </div>
           </div>
+        </header>
+
+        {/* ─────────────────────────────────────────────────────────────
+            2. LEFT RAIL: SOCIAL CONNECTIONS (GH, IN, CV)
+            - Visible from 500px screens upwards to prevent layout jumps on zoom
+            - 100% mathematically centered vertically
+        ───────────────────────────────────────────────────────────── */}
+        <div className="hidden min-[500px]:flex absolute left-3 sm:left-5 md:left-6 top-1/2 -translate-y-1/2 z-30 flex-col items-start gap-4 sm:gap-5 font-mono text-xs font-bold tracking-[0.25em] text-[#090D16]/75 text-left">
+          <a
+            href="https://github.com/nael0407"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#0284C7] transition-colors py-1 text-left"
+            aria-label="GitHub"
+          >
+            GH
+          </a>
+          <a
+            href="https://www.linkedin.com/in/natanael-simanjuntak"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#0284C7] transition-colors py-1 text-left"
+            aria-label="LinkedIn"
+          >
+            IN
+          </a>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsCvOpen(true);
+            }}
+            className="hover:text-[#0284C7] transition-colors py-1 text-left cursor-pointer"
+            aria-label="View Curriculum Vitae"
+          >
+            CV
+          </a>
         </div>
-      </div>
+
+        {/* ─────────────────────────────────────────────────────────────
+            3. HERO MAIN BODY (Portrait on Left, Summary & Name on Right)
+            - Fluid responsive 2-column flexbox from 500px screens upwards
+            - Proportional viewport-relative dimensions that never push off-screen
+        ───────────────────────────────────────────────────────────── */}
+        <div className="relative z-10 flex-1 w-full px-4 sm:px-6 md:px-8 pl-4 min-[500px]:pl-16 sm:pl-18 md:pl-20 lg:pl-24 pr-4 sm:pr-6 md:pr-8 lg:pr-10 flex flex-col min-[500px]:flex-row items-center min-[500px]:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 md:pb-8 min-h-0">
+          {/* Left Column: Editorial Portrait Card (Fluid Viewport Bounds) */}
+          <div className="relative shrink-0 mb-3 min-[500px]:mb-0 group">
+            <div className="relative h-[clamp(210px,36vh,340px)] aspect-[4/5] rounded-2xl sm:rounded-3xl lg:rounded-[30px] overflow-hidden border border-[#BAE6FD] bg-[#090A0F] shadow-2xl transition-all duration-300 group-hover:border-[#0284C7] group-hover:shadow-[0_20px_50px_rgba(2,132,199,0.25)]">
+              <Image
+                src="/images/natanael-hero.jpg"
+                alt="Natanael Sebastian Simanjuntak"
+                fill
+                sizes="(max-width: 640px) 220px, (max-width: 1024px) 300px, 380px"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Right Column: Summary + Monumental Name */}
+          <div className="w-full min-[500px]:w-auto flex-1 flex flex-col items-start min-[500px]:items-end text-left min-[500px]:text-right min-w-0">
+            {/* Mobile Social Connections (only visible below 500px breakpoint) */}
+            <div className="flex min-[500px]:hidden flex-row items-center justify-start gap-6 font-mono text-xs font-bold tracking-[0.25em] text-[#090D16]/75 text-left py-2 mb-2">
+              <a
+                href="https://github.com/nael0407"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#0284C7] transition-colors"
+              >
+                GH
+              </a>
+              <a
+                href="https://www.linkedin.com/in/natanael-simanjuntak"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#0284C7] transition-colors"
+              >
+                IN
+              </a>
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsCvOpen(true);
+                }}
+                className="hover:text-[#0284C7] transition-colors cursor-pointer"
+                aria-label="View Curriculum Vitae"
+              >
+                CV
+              </a>
+            </div>
+
+            {/* Summary Profile Block (Fluid max-width, directly above Name) */}
+            <div className="max-w-md md:max-w-lg mb-2 sm:mb-3">
+              <p className="font-sans text-[clamp(10px,0.95vw,12px)] font-semibold tracking-wider text-[#090D16]/80 leading-relaxed uppercase">
+                {roleDescription}
+              </p>
+            </div>
+
+            {/* Monumental Display Name (Continuous Fluid Clamp — Never Jumps) */}
+            <div className="w-full flex flex-col items-start min-[500px]:items-end space-y-0.5">
+              <div className="flex items-start gap-1.5 sm:gap-2 leading-none">
+                <span className="font-serif text-[clamp(1.2rem,2.2vw,2.5rem)] font-light text-[#0284C7] select-none mt-0.5">
+                  ©
+                </span>
+                <span className="font-black text-[clamp(1.6rem,3.2vw,3.8rem)] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
+                  {firstName}
+                </span>
+              </div>
+              <div className="font-black text-[clamp(1.6rem,3.2vw,3.8rem)] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
+                {middleName}
+              </div>
+              <div className="font-black text-[clamp(1.6rem,3.2vw,3.8rem)] tracking-tight uppercase text-[#090D16] leading-[0.88] select-none whitespace-nowrap">
+                {lastName}
+              </div>
+            </div>
+          </div>
+        </div>
       </HeroBackground>
 
       {/* Interactive Curriculum Vitae Modal */}
