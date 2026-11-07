@@ -121,13 +121,9 @@ export function CertificationsSection() {
               <Award className="w-3.5 h-3.5" />
               <span>05 / VERIFIED CREDENTIALS</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#090D16] uppercase mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#090D16] uppercase">
               Certifications
             </h2>
-            <p className="text-sm sm:text-base text-[#090D16]/75 max-w-xl leading-relaxed">
-              Industry-standard certifications validating engineering proficiency across
-              Artificial Intelligence, Cloud-Native Architecture, and Network Security.
-            </p>
           </div>
 
           {/* 3-Column Responsive Grid */}
