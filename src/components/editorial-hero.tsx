@@ -106,6 +106,12 @@ export function EditorialHero({
               SKILLS
             </Link>
             <Link
+              href="#certifications"
+              className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
+            >
+              CERTIFICATIONS
+            </Link>
+            <Link
               href="#contact"
               className="text-[#090D16]/65 hover:text-[#090D16] transition-colors whitespace-nowrap"
             >
