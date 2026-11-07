@@ -1,7 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { ZoomController } from "@/components/zoom-controller";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.4,
+  minimumScale: 1.4,
+  maximumScale: 5.0,
+  userScalable: true,
+};
 
 export const metadata: Metadata = {
   title: "Natanael Sebastian Simanjuntak — Portfolio",
@@ -43,6 +52,7 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}
     >
       <body className="min-h-screen antialiased">
+        <ZoomController />
         {children}
       </body>
     </html>
