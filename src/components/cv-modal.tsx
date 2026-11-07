@@ -73,7 +73,7 @@ export function CvModal({ isOpen, onClose }: CvModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 16 }}
             transition={{ type: "spring", damping: 26, stiffness: 320 }}
-            className="relative w-full max-w-5xl h-[92vh] sm:h-[90vh] bg-[#090D16] border border-[#BAE6FD] rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_rgba(2,132,199,0.2)] flex flex-col overflow-hidden z-[9999] text-[#090D16]"
+            className="relative w-full max-w-5xl h-[calc(100%-1.5rem)] sm:h-[calc(100%-2.5rem)] my-auto bg-[#090D16] border border-[#BAE6FD] rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_rgba(2,132,199,0.2)] flex flex-col overflow-hidden z-[9999] text-[#090D16]"
           >
             {/* ─────────────────────────────────────────────────────────────
                 TOP TOOLBAR: MIDNIGHT INK & ICE BLUE
@@ -130,41 +130,11 @@ export function CvModal({ isOpen, onClose }: CvModalProps) {
                 MAIN BODY: PDF EMBED
             ───────────────────────────────────────────────────────────── */}
             <div className="flex-1 w-full h-full overflow-hidden relative bg-[#090A0F]">
-              <object
-                data="/cv.pdf#toolbar=1&navpanes=0"
-                type="application/pdf"
-                className="w-full h-full border-0"
-              >
-                {/* Fallback for devices without native PDF embedding */}
-                <div className="h-full flex flex-col items-center justify-center p-8 text-center bg-[#090A0F]">
-                  <FileText className="w-16 h-16 text-[#0284C7] mb-4 opacity-80" />
-                  <h4 className="text-lg font-bold text-white mb-2">
-                    Natanael Sebastian Simanjuntak — CV
-                  </h4>
-                  <p className="text-sm text-[#94A3B8] max-w-md mb-6 leading-relaxed">
-                    Your browser may not support inline PDF previewing on this device. You can download the PDF directly or open it in a dedicated tab.
-                  </p>
-                  <div className="flex flex-wrap items-center justify-center gap-3">
-                    <a
-                      href="/Natanael_Sebastian_Simanjuntak_CV.pdf"
-                      download="Natanael_Sebastian_Simanjuntak_CV.pdf"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white text-sm font-semibold transition-all shadow-lg"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>Download CV PDF</span>
-                    </a>
-                    <a
-                      href="/cv.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#161B26] hover:bg-[#202738] text-white border border-[#28324A] text-sm font-semibold transition-all"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Open in New Tab</span>
-                    </a>
-                  </div>
-                </div>
-              </object>
+              <iframe
+                src="/cv.pdf#toolbar=1&navpanes=0"
+                title="Natanael Sebastian Simanjuntak — Curriculum Vitae"
+                className="w-full h-full border-0 block"
+              />
             </div>
           </motion.div>
         </div>

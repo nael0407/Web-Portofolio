@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function CvPage() {
   return (
-    <main className="min-h-screen bg-[#090D16] text-[#090D16] flex flex-col">
+    <main className="fixed inset-0 bg-[#090D16] text-[#090D16] flex flex-col overflow-hidden">
       {/* Top Header: Midnight Ink & Ice Blue */}
-      <header className="w-full px-4 sm:px-8 py-3.5 border-b border-[#BAE6FD] bg-[#F0F8FD] flex flex-wrap items-center justify-between gap-4">
+      <header className="w-full px-4 sm:px-8 py-3.5 border-b border-[#BAE6FD] bg-[#F0F8FD] flex flex-wrap items-center justify-between gap-4 shrink-0">
         <div className="flex items-center gap-3">
           <Link
             href="/"
@@ -49,31 +49,13 @@ export default function CvPage() {
         </div>
       </header>
 
-      {/* Full-height PDF viewer */}
-      <div className="flex-1 w-full relative">
-        <object
-          data="/cv.pdf#toolbar=1&navpanes=0"
-          type="application/pdf"
-          className="w-full h-[calc(100vh-65px)] border-0"
-        >
-          <div className="flex flex-col items-center justify-center p-12 text-center h-[calc(100vh-65px)]">
-            <FileText className="w-16 h-16 text-[#0284C7] mb-4" />
-            <h2 className="text-xl font-bold text-white mb-2">
-              Natanael Sebastian Simanjuntak — Curriculum Vitae
-            </h2>
-            <p className="text-sm text-[#94A3B8] max-w-md mb-6 leading-relaxed">
-              Your browser does not support inline PDF viewing. Please download the document below.
-            </p>
-            <a
-              href="/Natanael_Sebastian_Simanjuntak_CV.pdf"
-              download="Natanael_Sebastian_Simanjuntak_CV.pdf"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white text-sm font-semibold transition-all shadow-xl"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download CV PDF (168 KB)</span>
-            </a>
-          </div>
-        </object>
+      {/* Full-height PDF viewer bounded inside viewport */}
+      <div className="flex-1 w-full h-full relative overflow-hidden bg-[#090A0F]">
+        <iframe
+          src="/cv.pdf#toolbar=1&navpanes=0"
+          title="Natanael Sebastian Simanjuntak — Curriculum Vitae"
+          className="w-full h-full border-0 block"
+        />
       </div>
     </main>
   );
