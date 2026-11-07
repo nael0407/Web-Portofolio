@@ -116,34 +116,18 @@ export function CertificationsSection() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           {/* Section Header */}
-          <div className="mb-14 pb-8 border-b border-[#BAE6FD] flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-[#0284C7]">
-                <Award className="w-3.5 h-3.5" />
-                <span>05 / VERIFIED CREDENTIALS</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#090D16] uppercase">
-                Certifications
-              </h2>
-              <p className="text-sm sm:text-base text-[#090D16]/75 max-w-xl leading-relaxed">
-                Industry-standard certifications validating engineering proficiency across
-                Artificial Intelligence, Cloud-Native Architecture, and Network Security.
-              </p>
+          <div className="mb-14 pb-8 border-b border-[#BAE6FD]">
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-[#0284C7] mb-3">
+              <Award className="w-3.5 h-3.5" />
+              <span>05 / VERIFIED CREDENTIALS</span>
             </div>
-
-            {/* Quick Stats Pill */}
-            <div className="shrink-0 flex items-center gap-3">
-              <div className="px-4 py-2 rounded-2xl bg-[#FFFFFF]/90 border border-[#BAE6FD] shadow-sm flex items-center gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#0284C7] animate-pulse" />
-                <span className="font-mono text-xs font-bold text-[#090D16]">
-                  3 Active Credentials
-                </span>
-                <span className="text-[#BAE6FD]">•</span>
-                <span className="font-mono text-xs text-[#0284C7] font-semibold">
-                  AWS & Cisco
-                </span>
-              </div>
-            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#090D16] uppercase mb-4">
+              Certifications
+            </h2>
+            <p className="text-sm sm:text-base text-[#090D16]/75 max-w-xl leading-relaxed">
+              Industry-standard certifications validating engineering proficiency across
+              Artificial Intelligence, Cloud-Native Architecture, and Network Security.
+            </p>
           </div>
 
           {/* 3-Column Responsive Grid */}
