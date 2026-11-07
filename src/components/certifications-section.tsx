@@ -52,6 +52,21 @@ const CERTIFICATION_OFFERS: Offer[] = [
     href: "https://www.credly.com/badges/c26b3ad0-723a-41e0-8581-0513001a25cc/public_url",
   },
   {
+    id: "datacamp-transformer-models-pytorch",
+    imageSrc: "/images/certifications/datacamp-transformer-models-pytorch.png",
+    imageAlt: "DataCamp Transformer Models with PyTorch Certificate",
+    imageFit: "certificate",
+    tag: "Transformers",
+    title: "Transformer Models with PyTorch",
+    description:
+      "Explores self-attention mechanisms, multi-head attention, positional encodings, encoder-decoder architectures, and fine-tuning transformer models.",
+    brandLogoSrc:
+      "data:image/svg+xml;utf8,<svg role='img' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' style='background:%2305192D;border-radius:50%;padding:3px;'><path fill='%2303EF62' d='M12.946 18.151v-5.239L21.209 8.2 19.2 7.048l-6.254 3.567V5.36c0-.356-.192-.689-.5-.866L4.922.177a1.434 1.434 0 0 0-1.455.044 1.438 1.438 0 0 0-.676 1.224v14.777A1.44 1.44 0 0 0 4.92 17.49l6.032-3.44v4.683a1 1 0 0 0 .504.867l7.73 4.4 2.01-1.152-8.25-4.697zM10.953 5.938v5.814L4.785 15.27V2.4l6.168 3.539v-.001z'/></svg>",
+    brandName: "DataCamp",
+    promoCode: "Statement #47,642,753 ↗",
+    href: "/certificates/datacamp-transformer-models-pytorch.pdf",
+  },
+  {
     id: "datacamp-dl-images-pytorch",
     imageSrc: "/images/certifications/datacamp-deep-learning-images-pytorch.png",
     imageAlt: "DataCamp Deep Learning for Images with PyTorch Certificate",
