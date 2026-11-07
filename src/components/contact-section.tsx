@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Copy, Check, ArrowUpRight } from "lucide-react";
+import { Mail, Copy, Check, ArrowUpRight, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { HeroBackground } from "@/components/ui/tweenly-hero-background";
 
@@ -86,8 +86,8 @@ export function ContactSection() {
           </div>
         </div>
 
-        {/* Bottom Bar: Socials */}
-        <div className="flex items-center justify-center gap-8 pt-8 border-t border-[#BAE6FD] text-xs font-mono text-[#090D16]/80">
+        {/* Bottom Bar: Socials & CV */}
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 pt-8 border-t border-[#BAE6FD] text-xs font-mono text-[#090D16]/80">
           <a
             href="https://github.com/nael0407"
             target="_blank"
@@ -105,6 +105,15 @@ export function ContactSection() {
           >
             <LinkedinIcon className="w-4 h-4 text-[#0284C7]" />
             <span>LinkedIn</span>
+          </a>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-[#0284C7] transition-colors"
+          >
+            <FileText className="w-4 h-4 text-[#0284C7]" />
+            <span>Curriculum Vitae</span>
           </a>
         </div>
       </div>

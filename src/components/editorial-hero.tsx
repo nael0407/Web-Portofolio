@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import WireframeForms from "@/components/ui/wireframe-forms";
 import { HeroBackground } from "@/components/ui/tweenly-hero-background";
+import { CvModal } from "@/components/cv-modal";
 
 interface EditorialHeroProps {
   firstName?: string;
@@ -19,6 +21,8 @@ export function EditorialHero({
   lastName = "SIMANJUNTAK",
   roleDescription = "I'M WORKING ACROSS AI, NETWORK SECURITY AND FORENSICS, AND CLOUD-NATIVE INFRASTRUCTURE. I ALSO WORK ON DEEP LEARNING COMPUTER VISION FOR A HUMANOID ROBOT.",
 }: EditorialHeroProps) {
+  const [isCvOpen, setIsCvOpen] = useState(false);
+
   return (
     /* ─────────────────────────────────────────────────────────────
        SECTION 1: HERO — LIGHT SECTION (Midnight Ink + Ice Blue)
@@ -136,9 +140,15 @@ export function EditorialHero({
           IN
         </a>
         <a
-          href="#contact"
-          className="hover:text-[#0284C7] transition-colors py-1 text-left"
-          aria-label="Resume"
+          href="/cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => {
+            e.preventDefault();
+            setIsCvOpen(true);
+          }}
+          className="hover:text-[#0284C7] transition-colors py-1 text-left cursor-pointer"
+          aria-label="View Curriculum Vitae"
         >
           CV
         </a>
@@ -183,8 +193,15 @@ export function EditorialHero({
               IN
             </a>
             <a
-              href="#contact"
-              className="hover:text-[#0284C7] transition-colors"
+              href="/cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsCvOpen(true);
+              }}
+              className="hover:text-[#0284C7] transition-colors cursor-pointer"
+              aria-label="View Curriculum Vitae"
             >
               CV
             </a>
@@ -217,6 +234,9 @@ export function EditorialHero({
         </div>
       </div>
       </HeroBackground>
+
+      {/* Interactive Curriculum Vitae Modal */}
+      <CvModal isOpen={isCvOpen} onClose={() => setIsCvOpen(false)} />
     </section>
   );
 }
